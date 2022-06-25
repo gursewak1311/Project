@@ -84,7 +84,7 @@
             $input_tile = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
             $input_date = filter_input(INPUT_POST, 'date');
             $input_body = filter_input(INPUT_POST, 'body', FILTER_SANITIZE_SPECIAL_CHARS);
-            $input_category = filter_input(INPUT_POST, 'category', FILTER_VALIDATE_CHARS);
+            $input_category = filter_input(INPUT_POST, 'category');
 
             //if editing, capture the id from the hidden input 
             $id = null;
