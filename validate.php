@@ -1,5 +1,4 @@
 <?php
-//validate our user information, checking to see whether information has been entered and whether it is in the proper format
 
 //creating an empty array to store error messages 
 $errors = array();
