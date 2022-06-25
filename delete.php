@@ -1,7 +1,5 @@
 <?php
-//Step Two - Build the script that will delete the information from the table in the database 
 
-//store the user id in a variable - post or get? 
 
 $user_id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT, FILTER_SANITIZE_NUMBER_INT); 
 
