@@ -11,11 +11,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <!-- add recaptcha library -->
+  <script src='https://www.google.com/recaptcha/api.js' async defer></script>
 </head>
 <body class="home">
+  //inspired by professor jessica's design of application tuneshare
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Blog</a>
+            <a class="navbar-brand" href="home.php">Blog</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -38,9 +41,8 @@
      </header>
      <main>
        <?php
-        //Step Three - add the ability for users to use the form to edit their information as well as add new information to the DB. To do this, we'll check if the user is editing and, if so, we'll populate the form with the values they want to change. When the user submits the form, their record will be updated. 
 
-        //intialize variables 
+        //intialize variables
 
         $title = null;
         $date = null;
@@ -54,39 +56,39 @@
         if (!empty($user_id) && $user_id !== false) {
           //connect to db
           require_once('connect.php');
-          //set up sql query 
+          //set up sql query
           $sql = "SELECT * FROM blogs WHERE user_id = :user_id;";
-          //prepare query 
+          //prepare query
           $statement = $db->prepare($sql);
           //bind
           $statement->bindParam(':user_id', $user_id);
-          //execute 
+          //execute
           $statement->execute();
-          //use fetchAll method 
+          //use fetchAll method
           $records = $statement->fetchAll();
 
           foreach ($records as $record) {
             $title = $record['title'];
             $date = $record['date'];
             $body = $record['body'];
-            $category = $record['category'];        
+            $category = $record['category'];
           }
-          //close db connection 
+          //close db connection
           $statement->closeCursor();
         }
 
-        //if the form has been submited, process the form information 
+        //if the form has been submited, process the form information
         if (isset($_POST['submit'])) {
-          //check whether the recaptcha was checked by the user 
+          //check whether the recaptcha was checked by the user
           if (!empty($_POST['g-recaptcha-response'])) {
-            //create variables to store form data, using filter input to validate & sanitize 
+            //create variables to store form data, using filter input to validate & sanitize
             /*https://www.php.net/manual/en/filter.filters.sanitize.php*/
-            $input_tile = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
+            $input_title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
             $input_date = filter_input(INPUT_POST, 'date');
             $input_body = filter_input(INPUT_POST, 'body', FILTER_SANITIZE_SPECIAL_CHARS);
             $input_category = filter_input(INPUT_POST, 'category');
 
-            //if editing, capture the id from the hidden input 
+            //if editing, capture the id from the hidden input
             $id = null;
             $id = filter_input(INPUT_POST, 'user_id');
 
@@ -108,16 +110,11 @@
             } else {
 
               try {
-                //connect to database 
+                //connect to database
                 require_once('connect.php');
 
-                // set up SQL command to insert data into table
-                //if we have an id, we are editing (UPDATE), if not, we will be adding information to the table (INSERT)
 
-
-                //this is a new tune we are adding to our app 
-                // set up an SQL command to save the info 
-
+  
                 if (!empty($id)) {
                   $sql = "UPDATE blogs SET title = :title, date = :date, body = :body, category = :category WHERE user_id = :id";
                 } else {
@@ -133,16 +130,16 @@
                 $statement->bindParam(':body', $input_body);
                 $statement->bindParam(':category', $input_category);
 
-                //bind user id if needed 
+                //bind user id if needed
                 if (!empty($id)) {
                   $statement->bindParam(':id', $id);
                 }
-                //execute the query 
+                //execute the query
                 $statement->execute();
 
-                //close the db connection 
+                //close the db connection
                 $statement->closeCursor();
-                //redirect the user to the updated playlist page 
+                //redirect the user to the updated playlist page
                 header("Location: view.php");
               } catch (PDOException $e) {
                 echo "<p> Sorry! Something has gone wrong on our end! An email has been sent to our admin team </p>". $e->getMessage();
@@ -168,9 +165,9 @@
              </div>
              <div>
                <label for="body"> Body of the blog </label>
-               <input type="body" name="body" class="form-control" id="body" value="<?php echo "<p>$body</p>"; ?>" required>
+               <input type="body" name="body" class="form-control" id="body" value="<?php echo "$body"; ?>" required>
              </div>
-            
+
              <div class="form-group">
                <label for="category"> category </label>
                <select name="category" class="form-select form-select-lg form-control" id="category">
@@ -197,13 +194,10 @@
              <input type="submit" name="submit" value="Submit" class="btn btn-primary">
            </form>
          </div>
-        
+
        </div>
        <!--end row-->
      </main>
-     <footer>
-       <p> &copy; <?php echo getdate()['year']; ?> </p>
-     </footer>
    </div>
    <!--end container-->
 </body>
