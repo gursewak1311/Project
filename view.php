@@ -15,7 +15,7 @@
 <body class="home">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Blog</a>
+            <a class="navbar-brand" href="home.php">Blog</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -38,37 +38,36 @@
      </header>
      <main>
        <?php
-       //connect to our db 
+       //connect to our db
           require_once('connect.php');
 
-          //set up SQL statement 
+          //set up SQL statement
           $sql = "SELECT * FROM blogs;";
 
-          //prepare the query 
+          //prepare the query
           $statement = $db->prepare($sql);
 
-          //execute 
+          //execute
           $statement->execute();
 
           //use fetchAll to Fetch all remaining rows in a result set
           $records = $statement->fetchAll();
 
-          // echo out the top of the table 
+          // echo out the top of the table
 
           echo "<table class='table'><tbody>";
 
-          // Step One - Add Edit & Delete Button to the UI to allow users to edit & delete 
           foreach ($records as $record) {
             echo "<tr><td>"
               . $record['title'] . "</td><td>" . $record['date'] . "</td><td>" . $record['body'] . "</td><td>" . $record['category'] . "</td>
-              
+
               <td>
               <a href='delete.php?id=". $record['user_id'] ."' class='btn btn-danger' onclick='return confirm(\"Are you sure? \");' > Delete blog </a>
               </td>
               <td>
               <a href='home.php?id=". $record['user_id'] ."' class='btn btn-primary' > Update blog </a>
               </td>
-          </tr>"; 
+          </tr>";
           }
 
           echo "</tbody></table>";
@@ -79,9 +78,6 @@
       </div>
       <!--end row-->
     </main>
-    <footer>
-      <p> &copy; <?php echo getdate()['year']; ?>  </p>
-    </footer>
   </div>
   <!--end container-->
 </body>
