@@ -15,7 +15,6 @@
   <script src='https://www.google.com/recaptcha/api.js' async defer></script>
 </head>
 <body class="home">
-  //inspired by professor jessica's design of application tuneshare
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="home.php">Blog</a>
