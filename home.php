@@ -1,4 +1,5 @@
 <?php require_once('header.php'); ?>
+<?php require_once('auth.php'); ?>
 <?php require_once('navigation.php'); ?>
    <div class="container">
      <header>
