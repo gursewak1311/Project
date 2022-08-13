@@ -12,6 +12,6 @@ try {
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch(PDOException $e) {
-   require_once(error.php);
+   require_once('error.php');
 }
 ?>
