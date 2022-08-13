@@ -1,4 +1,5 @@
 <?php require_once('header.php'); ?>
+<?php require_once('auth.php'); ?>
 <?php require_once('navigation.php'); ?>
   <div class="container">
      <header>
@@ -6,7 +7,16 @@
        <h2> Create your blog or edit blog </h2>
      </header>
      <main>
+       <div class="row">
+        <form method="get" action="search_results.php" class="search-form">
+          <div class="form-group">
+            <label for="keywords"> Search for a blog: </label>
+            <input type="text" name="keywords" class="form-control" />
+          </div>
+          <input type="submit" value="Search" class="btn btn-primary" />
+        </form>
        <?php
+       try{
        //connect to our db
           require_once('connect.php');
 
@@ -40,8 +50,16 @@
           }
 
           echo "</tbody></table>";
-
+       }
+         catch (PDOException $e) {
+          header('Location: error.php');
+          $error_message = $e->getMessage();
+          $msg = "There was an error when user attempted to view the playlists. Error Message: " . $error_message . ".";
+          //send error email to dev/admin 
+          mail("jessicagilfillan@gmail.com", "App Error - Show Playlist", $msg);
+        } finally {
           $statement->closeCursor();
+        }
           ?>
         </div>
       </div>
