@@ -18,4 +18,4 @@
     require_once ('navigation.php');
     require_once ('errorlog.php');
 ?>
-    <body>
+
