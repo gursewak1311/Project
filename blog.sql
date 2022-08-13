@@ -13,5 +13,6 @@ CREATE TABLE `users` (
   `email` varchar (100) NOT NULL,
   `username` varchar (100) NOT NULL,
   `password` varchar (255) NOT NULL,
+  `profile_image` varchar(100) NOT NULL,
   PRIMARY KEY (user_id)
 );
