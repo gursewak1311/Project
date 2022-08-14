@@ -1,7 +1,5 @@
 <body>
   <?php
-  //customize the navigation based on whether a user is logged in or not
-  //check if session variables have been set (user is logged in)
   if (isset($_SESSION['loggedin'])) {
     echo '<body class="home">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -26,7 +24,7 @@
         </div>
     </nav>';
   } else {
-    //user is not logged, show this nav instead
+    //when user is not logged in
     echo '<body class="home">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
