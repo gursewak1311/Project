@@ -2,11 +2,11 @@
 
 try {
     //data source name 
-    $dsn = 'mysql:host=172.31.22.43;dbname=Gursewak200507206';
+    $dsn = 'mysql:host=172.31.22.43;dbname=';
     //username
-    $username = 'Gursewak200507206'; 
+    $username = ''; 
     //password
-    $password = 'PQj1tJ_xwl';
+    $password = '';
     $db = new PDO($dsn, $username, $password);
     //set the errormode to exception 
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
