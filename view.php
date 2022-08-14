@@ -1,6 +1,5 @@
 <?php require_once('header.php'); ?>
 <?php require_once('auth.php'); ?>
-<?php require_once('navigation.php'); ?>
   <div class="container">
      <header>
        <h1> Blog Site </h1>
@@ -52,11 +51,10 @@
           echo "</tbody></table>";
        }
          catch (PDOException $e) {
-          header('Location: error.php');
-          $error_message = $e->getMessage();
-          $msg = "There was an error when user attempted to view the playlists. Error Message: " . $error_message . ".";
-          //send error email to dev/admin 
-          mail("jessicagilfillan@gmail.com", "App Error - Show Playlist", $msg);
+         $error_message = $e->getMessage();
+              error_log($error_message, 3, "my-error-file.log");
+              //redirect user to custom error page 
+              header("Location: error.php");
         } finally {
           $statement->closeCursor();
         }
