@@ -12,6 +12,9 @@ try {
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch(PDOException $e) {
-   require_once('error.php');
+  $error_message = $e->getMessage();
+              error_log($error_message, 3, "my-error-file.log");
+              //redirect user to custom error page 
+              header("Location: error.php");
 }
 ?>
