@@ -33,7 +33,7 @@
           $responseData = json_decode($verifyResponse, true);
 
           //form validation 
-          require('validate2.php');
+          require('validateUser.php');
 
           //if there are errors, display them 
           if (!empty($errors)) {
