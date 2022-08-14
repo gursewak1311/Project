@@ -55,12 +55,8 @@
               //hash the password 
               $hashed_password = password_hash($input_password, PASSWORD_DEFAULT);
 
-              // set up SQL command to insert data into table
-
               $sql = "INSERT INTO users (first_name, last_name, email, username, password, profile_image) VALUES (:firstname, :lastname, :email, :username, :password, :profile_image)"; 
 
-
-              //call the prepare method of the PDO object, return PDOStatement Object
               $statement = $db->prepare($sql);
 
               //bind parameters
@@ -73,8 +69,6 @@
 
               //execute the query 
               $statement->execute();
-
-              //redirect the user to the login page to allow them to login 
               header("Location: login.php");
             } catch (Exception $e) {
               $error_message = $e->getMessage();
