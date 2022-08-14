@@ -167,5 +167,5 @@
      </main>
    </div>
    <!--end container-->
-</body>
+
 <?php require_once('footer.php'); ?>
