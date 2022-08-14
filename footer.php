@@ -1,5 +1,5 @@
 </body>
 <footer>
-  <h4> Thanks for visiting </h4>
+  <h4> Create your blog on homepage. Thanks! </h4>
 </footer>
 </html>
