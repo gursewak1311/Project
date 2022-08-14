@@ -15,7 +15,7 @@
   <script src='https://www.google.com/recaptcha/api.js' async defer></script>
 </head>
     <?php 
-    require_once ('navigation.php');
-    require_once ('errorlog.php');
+     require_once ('errorlog.php');
+     require_once ('navigation.php');
 ?>
 
