@@ -109,7 +109,10 @@
                 //redirect the user to the updated playlist page
                 header("Location: view.php");
               } catch (PDOException $e) {
-                 require_once('error.php');
+                 $error_message = $e->getMessage();
+                 error_log($error_message, 3, "my-error-file.log");
+                 //redirect user to custom error page 
+                 header("Location: error.php");
               }
             }
           } else {
