@@ -66,7 +66,7 @@
             $responseData = json_decode($verifyResponse, true);
 
 
-            require('validate1.php');
+            require('validateBlog.php');
 
             if (!empty($errors)) {
               echo "<div class='error_msg alert alert-danger'>";
