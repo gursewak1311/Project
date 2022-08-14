@@ -1,5 +1,6 @@
 <body>
   <?php
+  session_start();
   if (isset($_SESSION['loggedin'])) {
     echo '<body class="home">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
